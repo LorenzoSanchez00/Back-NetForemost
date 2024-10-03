@@ -1,0 +1,92 @@
+create database myDB;
+
+go
+
+use myBD;
+create table Gestores(
+GestorId int primary key identity(1,1),
+Nombre varchar(20)
+);
+
+create table Saldos(
+GestorId int,
+Saldo int
+foreign key (GestorId) references Gestores(Id)
+);
+
+go
+
+insert into Gestores(Nombre)
+values
+('gA'), ('gB'), ('gC'), ('gD'), ('gE'),
+('gF'), ('gG'), ('gH'), ('gI'), ('gJ');
+
+go
+
+insert into Saldos(Saldo)
+values
+(2277), (3953), (4726), (1414), (627), (1784), (1634), (3958), (2156), (1347),
+(2166), (820), (2325), (3613), (2389), (4130), (2007), (3027), (2591), (3940),
+(3888), (2975), (4470), (2291), (3393), (3588), (3286), (2293), (4353), (3315),
+(4900), (794), (4424), (4505), (2643), (2217), (4193), (2893), (4120), (3352),
+(2355), (3219), (3064), (4893), (272), (1299), (4725), (1900), (4927), (4011);
+
+
+
+-- ---------------------------------------------------
+
+create procedure p_AsignarSaldos
+as
+begin
+    declare @SaldosOrdenados table (
+        Id int identity(1,1),
+        Saldo int
+    );
+
+    insert into @SaldosOrdenados (Saldo)
+    select Saldo from Saldos order by Saldo desc;
+
+    declare @Asignaciones table (
+        GestorId int,
+        Saldo int
+    );
+
+    declare @GestorId int = 1;
+    declare @NumeroDeGestores int = (select count(*) from Gestores);
+    declare @Saldo int;
+
+    declare SaldosCursor cursor for
+    select Saldo from @SaldosOrdenados;
+
+    open SaldosCursor;
+    fetch next from SaldosCursor into @Saldo;
+
+    -- asignar cada saldo a un gestor
+    while @@FETCH_STATUS = 0
+    begin
+       
+        insert into @Asignaciones (GestorId, Saldo)
+        values (@GestorId, @Saldo);
+
+        set @GestorId = @GestorId + 1;
+        if @GestorId > @NumeroDeGestores
+            set @GestorId = 1;
+
+        fetch next from SaldosCursor into @Saldo;
+    end
+
+    close SaldosCursor;
+    DEALLOCATE SaldosCursor;
+
+    update Saldos
+    set GestorId = a.GestorId
+    from Saldos s
+    join @Asignaciones a on s.Saldo = a.Saldo;
+
+    select g.GestorId, g.Nombre, s.Saldo
+    from Saldos s
+    join Gestores g on s.GestorId = g.GestorId
+    order by g.GestorId;
+
+end;
+
