@@ -1,0 +1,56 @@
+﻿# Build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+out/
+
+# Visual Studio Code files
+.vscode/
+*.code-workspace
+
+# Rider files
+.idea/
+
+# User-specific files
+*.user
+*.suo
+*.userprefs
+*.sln.docstates
+
+# Visual Studio temporary files
+*.cache
+*.pdb
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.ilk
+*.ncb
+*.opendb
+*.aps
+*.pch
+*.sdf
+*.suo
+*.tmp
+
+# ASP.NET specific files
+project.lock.json
+project.fragment.lock.json
+
+# NuGet packages
+*.nupkg
+packages/
+*.snupkg
+
+# Azure Functions
+local.settings.json
+
+# Node.js files
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# OS generated files
+.DS_Store
+Thumbs.db

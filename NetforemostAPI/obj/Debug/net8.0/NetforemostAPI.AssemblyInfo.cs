@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NetforemostAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2967e3bdaf6ba6fe3cb359a3afa72f5a6e7ae249")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+67b95ada965023cb6dde5e853179baa65a425912")]
 [assembly: System.Reflection.AssemblyProductAttribute("NetforemostAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NetforemostAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
