@@ -26,7 +26,7 @@ API web construida con .NET 8, diseñada para gestionar la asignación de saldos
 
   ```json
   "ConnectionStrings": {
-    "DefaultConnection": "Server=TU_SERVIDOR;Database=myDB;User Id=TU_USUARIO;Password=TU_CONTRASEÑA;"}
+    "Connection": "Server= TuServidor; Database=NombreDB; Trusted_Connection=True; TrustServerCertificate=True"}
   ```
 
 4. Crea la BBDD con el archivo: **SQL-Scripts.txt**
